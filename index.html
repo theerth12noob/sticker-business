@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theerth's Sticker Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header class="cover-page">
+        <div class="cover-content">
+            <h1>Theerth's Stickers</h1>
+            <p>"A unique website all for people who love stickers!"</p>
+            <button onclick="scrollToSection('shop')">Explore Stickers ✨</button>
+        </div>
+    </header>
+
+    <main class="shop-container" id="shop">
+        <h2>Pick Your Universe</h2>
+        <nav class="category-menu">
+            <button onclick="filterCategory('marvel')">Marvel & Spiderman</button>
+            <button onclick="filterCategory('dc')">DC Universe</button>
+            <button onclick="filterCategory('the-boys')">The Boys</button>
+            <button onclick="filterCategory('dinosaurs')">Dinosaurs & Kaijus</button>
+            <button onclick="filterCategory('anime')">Chibi Anime</button>
+            <button onclick="filterCategory('movies')">Movie Trilogies</button>
+        </nav>
+        <div class="sticker-grid" id="sticker-display">
+            <p class="placeholder-text">Click a category above to view the cute stickers!</p>
+        </div>
+    </main>
+
+    <section class="about-section">
+        <h2>My Story</h2>
+        <div class="about-card">
+            <p>Hey, my name is <strong>Theerth</strong>.</p><br>
+            <p>I wanted to create a business nobody would have thought of. A sticker business for all people who love
+                decorating. My mom had a very big role for the idea. I am trying to expand my website so please send
+                feedback and support. Thank you.</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2>Get in Touch & Feedback</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Me 📬</h3><br>
+                <p>Have questions or custom requests? Drop me an email at:</p><br>
+                <a href="mailto:theerth12@gmail.com" class="email-link">theerth12@gmail.com</a>
+            </div>
+            <div class="feedback-form">
+                <h3>Leave an Honest Review 💬</h3><br>
+                <form id="reviewForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <textarea placeholder="Write your honest feedback here..." rows="4" required></textarea>
+                    <button type="submit">Submit Review</button>
+                </form>
+                <div id="formFeedback" class="hidden">Thank you for your feedback! 🤎</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Theerth's Sticker Shop. Designed with love.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
