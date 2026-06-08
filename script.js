@@ -25,9 +25,10 @@ function filterCategory(category) {
     });
 }
 
-document.getElementById("reviewForm").addEventListener("submit", (e) => {
+document.getElementById("reviewForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    document.getElementById("formFeedback").classList.remove("hidden");
-    document.getElementById("reviewForm").reset();
-    setTimeout(() => document.getElementById("formFeedback").classList.add("hidden"), 4000);
+    const feedbackBox = document.getElementById("formFeedback");
+    feedbackBox.classList.remove("hidden");
+    this.reset();
+    setTimeout(() => feedbackBox.classList.add("hidden"), 4000);
 });

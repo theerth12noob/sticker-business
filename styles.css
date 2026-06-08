@@ -167,8 +167,55 @@ h2 {
     font-size: 2.5rem;
 }
 
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    text-align: left;
+    background: #FFF;
+    border: 3px solid #6F4E37;
+    border-radius: 20px;
+    padding: 40px;
+    align-items: start;
+}
+
+.feedback-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #6F4E37;
+    border-radius: 10px;
+    background-color: #FDFBF7;
+    color: #4A3525;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
 .hidden {
     display: none;
+}
+
+#formFeedback {
+    margin-top: 15px;
+    padding: 10px;
+    background: #E8F5E9;
+    border: 2px solid #4F7942;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #4F7942;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 footer {
