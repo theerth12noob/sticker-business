@@ -36,7 +36,9 @@
 
     <div id="overlay">
         <span class="close-btn" onclick="document.getElementById('overlay').style.display='none'">&times;</span>
+        <button class="nav-arrow left" onclick="changeSticker(-1)">&#10094;</button>
         <img id="overlay-img" src="" alt="Expanded Sticker">
+        <button class="nav-arrow right" onclick="changeSticker(1)">&#10095;</button>
         <h2 id="overlay-name"></h2>
     </div>
 

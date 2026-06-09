@@ -16,12 +16,12 @@ const stickerData = {
         { name: "Excuse Me Sir 🫡", img: "excuse me sir.jpeg" },
         { name: "Folk 👶", img: "folk.webp" },
         { name: "Funny Doge 😄", img: "funneh doge.jpg" },
-        { name: "Happy 😁", img: "happy.png" },
+        { name: "Happy Capybara 😁", img: "happy.png" },
         { name: "Baby Kratos 🪓", img: "hatos.webp" },
         { name: "Deep Thought 💭", img: "hm.jpeg" },
         { name: "Jimmy Butler Paper 📝", img: "jimmy-butler-jimmy-butler-paper.png" },
         { name: "Lightning Eyes ⚡", img: "killursekf.jpg" },
-        { name: "Omni man 😡", img: "like-father-like-son-v0-qvi1aymvpnwe1.webp" },
+        { name: "Like Father Like Son 😡", img: "like-father-like-son-v0-qvi1aymvpnwe1.webp" },
         { name: "Bald Messi 👴", img: "meems.jpg" },
         { name: "Ryan Gosling Spoon 🥄", img: "nice.webp" },
         { name: "OMG!!! 🤦‍♂️", img: "omg.avif" },
@@ -45,28 +45,59 @@ const stickerData = {
     movies: [{ name: "Chibi Harry Potter ⚡", img: "harry.jpg" }, { name: "Chibi Hermione Granger 📚", img: "hermione.jpg" }, { name: "Baby Anakin Skywalker 🌌", img: "anakin.jpg" }, { name: "Darth Vader 🔴⚔️", img: "vader.webp" }, { name: "Luke Skywalker ⚔️🟢", img: "luke.jpg" }, { name: "Princess Leia 👑", img: "leia.jpg" }, { name: "Obi-Wan Kenobi 🧘‍♂️🔵", img: "obi wan.jpg" }, { name: "Cute C-3PO 🤖", img: "c3po.jpg" }, { name: "Chibi Chewbacca 🐻", img: "chewie.jpg" }, { name: "Tiny Han Solo 🔫", img: "han.jpg" }, { name: "Master Yoda 🟢✨", img: "yoda.png" }, { name: "Stormtrooper ⚪🛡️", img: "trooper.jpg" }, { name: "Cute R2-D2 🤖⚙️", img: "r2d2.jpg" }, { name: "Padmé Amidala 🌸", img: "padme.png" }, { name: "Emperor Palpatine ⚡⚡", img: "palp.jpg" }, { name: "Tiny Frodo Baggins 💍", img: "frodo.jpg" }, { name: "Chibi Bilbo Baggins 🗺️", img: "bilbo.jpg" }, { name: "Legolas 🏹🍃", img: "legolas.jpg" }, { name: "Gollum 🐟👀", img: "gollum.jpg" }, { name: "The Eye of Sauron 🔥👁️", img: "sauron.jpg" }, { name: "Smaug the Dragon 🐉🔥", img: "smaug.jpg" }, { name: "Dom Toretto 🚗💨", img: "dom.jpg" }, { name: "Baby Paul Atreides 🏜️", img: "paul.jpg" }, { name: "Giant Sandworm 🐛🏜️", img: "sandworm.jpg" }, { name: "Chibi Indiana Jones 🤠🧭", img: "indy.jpg" }]
 };
 
+let currentCategory = 'memes', currentIndex = 0;
+
 function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
 function filterCategory(category) {
+    currentCategory = category; currentIndex = 0;
     const displayArea = document.getElementById("sticker-display");
     displayArea.innerHTML = "";
-    stickerData[category].forEach(sticker => {
-        const stickerCard = document.createElement("div");
-        stickerCard.classList.add("sticker-item");
-        stickerCard.onclick = () => {
-            document.getElementById("overlay-img").src = sticker.img;
-            document.getElementById("overlay-name").innerText = sticker.name;
-            document.getElementById("overlay").style.display = "flex";
-        };
-        stickerCard.innerHTML = `<img src="${sticker.img}" alt="${sticker.name}"><p>${sticker.name}</p>`;
-        displayArea.appendChild(stickerCard);
+    stickerData[category].forEach((sticker, index) => {
+        const div = document.createElement("div");
+        div.className = "sticker-item";
+        div.onclick = () => openOverlay(index);
+        div.innerHTML = `<img src="${sticker.img}" alt="${sticker.name}"><p>${sticker.name}</p>`;
+        displayArea.appendChild(div);
     });
 }
 
+function openOverlay(index) {
+    currentIndex = index;
+    const sticker = stickerData[currentCategory][currentIndex];
+    const imgElement = document.getElementById("overlay-img");
+    imgElement.style.opacity = 0;
+    setTimeout(() => {
+        imgElement.src = sticker.img;
+        document.getElementById("overlay-name").innerText = sticker.name;
+        imgElement.style.opacity = 1;
+    }, 150);
+    document.getElementById("overlay").style.display = "flex";
+}
+
+function changeSticker(dir) {
+    currentIndex = (currentIndex + dir + stickerData[currentCategory].length) % stickerData[currentCategory].length;
+    openOverlay(currentIndex);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (document.getElementById('overlay').style.display === 'flex') {
+        if (e.key === 'ArrowRight') changeSticker(1);
+        if (e.key === 'ArrowLeft') changeSticker(-1);
+        if (e.key === 'Escape') document.getElementById('overlay').style.display = 'none';
+    }
+});
+
+let touchX = 0;
+document.getElementById('overlay').addEventListener('touchstart', e => touchX = e.changedTouches[0].screenX);
+document.getElementById('overlay').addEventListener('touchend', e => {
+    let diff = e.changedTouches[0].screenX - touchX;
+    if (diff > 50) changeSticker(-1); else if (diff < -50) changeSticker(1);
+});
+
 document.getElementById("reviewForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    const feedbackBox = document.getElementById("formFeedback");
-    feedbackBox.classList.remove("hidden");
+    document.getElementById("formFeedback").classList.remove("hidden");
     this.reset();
-    setTimeout(() => feedbackBox.classList.add("hidden"), 4000);
+    setTimeout(() => document.getElementById("formFeedback").classList.add("hidden"), 4000);
 });
