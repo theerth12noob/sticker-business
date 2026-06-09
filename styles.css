@@ -9,6 +9,7 @@ body {
     background-color: #FDFBF7;
     color: #4A3525;
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .cover-page {
@@ -137,7 +138,7 @@ h2 {
 .nav-arrow {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%) scale(1);
+    transform: translateY(-50%);
     background: rgba(111, 78, 55, 0.8);
     color: white;
     border: none;
@@ -146,12 +147,6 @@ h2 {
     cursor: pointer;
     border-radius: 50%;
     z-index: 1001;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.nav-arrow:hover {
-    background: #6F4E37;
-    transform: translateY(-50%) scale(1.1);
 }
 
 .left {
@@ -171,7 +166,6 @@ h2 {
     cursor: pointer;
 }
 
-/* Review Box Decoration */
 #reviewForm input,
 #reviewForm textarea {
     width: 100%;
@@ -180,13 +174,6 @@ h2 {
     border: 2px solid #D7CCC8;
     border-radius: 10px;
     background: #FDFBF7;
-    transition: border-color 0.3s;
-}
-
-#reviewForm input:focus,
-#reviewForm textarea:focus {
-    border-color: #6F4E37;
-    outline: none;
 }
 
 .hidden {
@@ -202,17 +189,6 @@ h2 {
     text-align: center;
     font-weight: bold;
     color: #2E7D32;
-    animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
 }
 
 .contact-container {
@@ -233,4 +209,34 @@ footer {
     background-color: #6F4E37;
     color: #FDFBF7;
     margin-top: 50px;
+}
+
+/* PHONE FRIENDLY RULES - DOES NOT CHANGE STYLE */
+@media (max-width: 768px) {
+    .cover-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sticker-grid {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .sticker-item {
+        width: 120px;
+    }
+
+    .sticker-item img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-arrow {
+        padding: 10px 15px;
+        font-size: 1.5rem;
+    }
 }
