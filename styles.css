@@ -171,6 +171,50 @@ h2 {
     cursor: pointer;
 }
 
+/* Review Box Decoration */
+#reviewForm input,
+#reviewForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #D7CCC8;
+    border-radius: 10px;
+    background: #FDFBF7;
+    transition: border-color 0.3s;
+}
+
+#reviewForm input:focus,
+#reviewForm textarea:focus {
+    border-color: #6F4E37;
+    outline: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#formFeedback {
+    margin-top: 15px;
+    padding: 15px;
+    background: #E8F5E9;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #2E7D32;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -180,21 +224,7 @@ h2 {
     border: 3px solid #6F4E37;
     border-radius: 20px;
     padding: 40px;
-}
-
-.hidden {
-    display: none;
-}
-
-#formFeedback {
-    margin-top: 15px;
-    padding: 10px;
-    background: #E8F5E9;
-    border: 2px solid #4F7942;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
-    color: #4F7942;
+    box-shadow: 0 10px 20px rgba(111, 78, 55, 0.1);
 }
 
 footer {

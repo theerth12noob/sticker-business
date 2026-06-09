@@ -97,7 +97,8 @@ document.getElementById('overlay').addEventListener('touchend', e => {
 
 document.getElementById("reviewForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    document.getElementById("formFeedback").classList.remove("hidden");
+    const feedbackBox = document.getElementById("formFeedback");
+    feedbackBox.classList.remove("hidden");
     this.reset();
-    setTimeout(() => document.getElementById("formFeedback").classList.add("hidden"), 4000);
+    setTimeout(() => feedbackBox.classList.add("hidden"), 4000);
 });
